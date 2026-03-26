@@ -2,6 +2,13 @@
 
 A free, online CV/resume builder for Indonesian job seekers. Create professional CVs in minutes, choose from multiple templates, and download as PDF—completely free.
 
+![Status](https://img.shields.io/badge/status-mvp-green) ![License](https://img.shields.io/badge/license-MIT-blue) ![Vercel](https://img.shields.io/badge/deployed_on-vercel-black)
+
+**Live Demo**: https://bikin-cv-gratis-k63k6fzu8-rfginanjars-projects.vercel.app  
+*(Note: Preview deployment requires Vercel authentication. See [Deployment Guide](DEPLOYMENT_GUIDE.md) to make it public.)*
+
+**GitHub**: https://github.com/raclaws/bikin-cv-gratis
+
 ## Features
 
 - **4 Professional Templates**: Modern, Classic, Minimal, and Executive styles

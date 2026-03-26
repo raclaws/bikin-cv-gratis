@@ -1,0 +1,2 @@
+Deployment URL: https://bikin-cv-gratis-k63k6fzu8-rfginanjars-projects.vercel.app
+Deployed at: 2026-03-26T12:39:23.167Z
