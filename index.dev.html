@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bikin CV Gratis - Buat Curriculum Vitae Online</title>
+    <meta name="description" content="Buat CV profesional secara gratis. Pilih template, isi data, dan download PDF. Tanpa registrasi, tanpa biaya.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <i class="fas fa-file-alt"></i> Bikin CV Gratis
+                </h1>
+                <p class="tagline">Buat CV profesional dalam 5 menit. Unduh PDF, gratis selamanya.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-container">
+        <div class="app-grid">
+            <!-- Form Section -->
+            <section class="form-section">
+                <div class="form-header">
+                    <h2><i class="fas fa-edit"></i> Isi Data CV</h2>
+                    <p class="subtitle">Lengkapi informasi di bawah ini. Preview akan otomatis diperbarui.</p>
+                </div>
+
+                <form id="cvForm" class="cv-form">
+                    <!-- Personal Information -->
+                    <fieldset class="form-fieldset">
+                        <legend><i class="fas fa-user"></i> Informasi Pribadi</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Nama Lengkap *</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Contoh: Andi Wijaya" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profession">Profesi / Jabatan *</label>
+                                <input type="text" id="profession" name="profession" placeholder="Contoh: Software Engineer" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Nomor Telepon</label>
+                                <input type="tel" id="phone" name="phone" placeholder="0812-3456-7890">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="location">Lokasi</label>
+                                <input type="text" id="location" name="location" placeholder="Contoh: Jakarta, Indonesia">
+                            </div>
+                            <div class="form-group">
+                                <label for="linkedin">LinkedIn (opsional)</label>
+                                <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/nama">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="summary">Ringkasan Profil *</label>
+                            <textarea id="summary" name="summary" rows="3" placeholder="Deskripsi singkat tentang keahlian, pengalaman, dan tujuan karier Anda." required></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Work Experience -->
+                    <fieldset class="form-fieldset">
+                        <legend><i class="fas fa-briefcase"></i> Pengalaman Kerja</legend>
+                        <div class="dynamic-section" id="experienceSection">
+                            <div class="experience-entry form-entry">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Posisi</label>
+                                        <input type="text" name="expPosition[]" placeholder="Contoh: Frontend Developer">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Perusahaan</label>
+                                        <input type="text" name="expCompany[]" placeholder="Nama perusahaan">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Periode (Mulai)</label>
+                                        <input type="month" name="expStart[]">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Periode (Selesai)</label>
+                                        <input type="month" name="expEnd[]" placeholder="Sekarang">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Deskripsi Pekerjaan</label>
+                                    <textarea name="expDescription[]" rows="2" placeholder="Jelaskan tanggung jawab dan pencapaian utama."></textarea>
+                                </div>
+                                <button type="button" class="btn-remove" onclick="removeExperience(this)"><i class="fas fa-times"></i> Hapus</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-secondary" onclick="addExperience()"><i class="fas fa-plus"></i> Tambah Pengalaman</button>
+                    </fieldset>
+
+                    <!-- Education -->
+                    <fieldset class="form-fieldset">
+                        <legend><i class="fas fa-graduation-cap"></i> Pendidikan</legend>
+                        <div class="dynamic-section" id="educationSection">
+                            <div class="education-entry form-entry">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Jurusan / Gelar</label>
+                                        <input type="text" name="eduDegree[]" placeholder="Contoh: S1 Teknik Informatika">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Institusi</label>
+                                        <input type="text" name="eduInstitution[]" placeholder="Nama universitas/sekolah">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Tahun Lulus</label>
+                                        <input type="number" name="eduYear[]" min="1970" max="2030" placeholder="2020">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>IPK/Nilai (opsional)</label>
+                                        <input type="text" name="eduGpa[]" placeholder="Contoh: 3.75">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-remove" onclick="removeEducation(this)"><i class="fas fa-times"></i> Hapus</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-secondary" onclick="addEducation()"><i class="fas fa-plus"></i> Tambah Pendidikan</button>
+                    </fieldset>
+
+                    <!-- Skills -->
+                    <fieldset class="form-fieldset">
+                        <legend><i class="fas fa-tools"></i> Keahlian</legend>
+                        <div class="form-group">
+                            <label>Keahlian Teknis (pisahkan dengan koma)</label>
+                            <input type="text" id="skills" name="skills" placeholder="Contoh: JavaScript, React, Node.js, UI/UX Design">
+                        </div>
+                        <div class="form-group">
+                            <label>Bahasa (pisahkan dengan koma)</label>
+                            <input type="text" id="languages" name="languages" placeholder="Contoh: Bahasa Indonesia, English, 日本語">
+                        </div>
+                    </fieldset>
+
+                    <!-- Template Selection -->
+                    <fieldset class="form-fieldset">
+                        <legend><i class="fas fa-palette"></i> Pilih Template CV</legend>
+                        <div class="template-grid" id="templateSelector">
+                            <div class="template-option active" data-template="modern">
+                                <div class="template-preview modern-preview"></div>
+                                <span class="template-name">Modern</span>
+                            </div>
+                            <div class="template-option" data-template="classic">
+                                <div class="template-preview classic-preview"></div>
+                                <span class="template-name">Classic</span>
+                            </div>
+                            <div class="template-option" data-template="minimal">
+                                <div class="template-preview minimal-preview"></div>
+                                <span class="template-name">Minimal</span>
+                            </div>
+                            <div class="template-option" data-template="executive">
+                                <div class="template-preview executive-preview"></div>
+                                <span class="template-name">Executive</span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="button" id="resetBtn" class="btn-secondary"><i class="fas fa-redo"></i> Reset Form</button>
+                        <button type="submit" id="generateBtn" class="btn-primary"><i class="fas fa-download"></i> Generate CV PDF</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="preview-section">
+                <div class="preview-header">
+                    <h2><i class="fas fa-eye"></i> Preview CV</h2>
+                    <p class="subtitle">CV Anda akan tampil seperti ini. Pilih template berbeda untuk melihat perubahan.</p>
+                </div>
+                
+                <div class="preview-container">
+                    <div class="preview-paper" id="cvPreview">
+                        <!-- CV preview will be rendered here by JavaScript -->
+                        <div class="preview-placeholder">
+                            <i class="fas fa-file-alt"></i>
+                            <p>Isi formulir di sebelah kiri untuk melihat preview CV Anda.</p>
+                        </div>
+                    </div>
+
+                    <div class="preview-actions">
+                        <button type="button" id="printBtn" class="btn-secondary" disabled><i class="fas fa-print"></i> Print Preview</button>
+                        <button type="button" id="saveDraftBtn" class="btn-secondary"><i class="fas fa-save"></i> Simpan Draft</button>
+                        <div class="preview-scale">
+                            <label for="zoomLevel">Zoom:</label>
+                            <select id="zoomLevel">
+                                <option value="0.8">80%</option>
+                                <option value="0.9">90%</option>
+                                <option value="1" selected>100%</option>
+                                <option value="1.1">110%</option>
+                                <option value="1.2">120%</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tips Section -->
+                <div class="tips-box">
+                    <h3><i class="fas fa-lightbulb"></i> Tips CV yang Baik</h3>
+                    <ul>
+                        <li>Gunakan kata kerja aksi (manage, develop, implement) untuk pengalaman kerja</li>
+                        <li>Sertakan angka dan metrik untuk menunjukkan pencapaian</li>
+                        <li>Pastikan informasi kontak lengkap dan profesional</li>
+                        <li>Maksimal 2 halaman untuk pengalaman &lt; 10 tahun</li>
+                        <li>Proofread sebelum kirim ke rekruter</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Dikembangkan dengan <i class="fas fa-heart"></i> untuk pencari kerja Indonesia.</p>
+            <p class="footer-links">
+                <a href="#privacy">Kebijakan Privasi</a> • 
+                <a href="#terms">Syarat Layanan</a> • 
+                <a href="https://github.com/raclaws" target="_blank">GitHub</a> •
+                <a href="mailto:raka.feisal@gmail.com">Kontak</a>
+            </p>
+            <p class="copyright">© 2026 Bikin CV Gratis. Semua hak dilindungi undang-undang.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="templates.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

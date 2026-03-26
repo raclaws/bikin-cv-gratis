@@ -5,7 +5,644 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bikin CV Gratis - Buat Curriculum Vitae Online</title>
     <meta name="description" content="Buat CV profesional secara gratis. Pilih template, isi data, dan download PDF. Tanpa registrasi, tanpa biaya.">
-    <link rel="stylesheet" href="style.css">
+    <style>
+/* Bikin CV Gratis - Main Stylesheet */
+:root {
+    /* Color Palette */
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #60a5fa;
+    --secondary: #7c3aed;
+    --accent: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    
+    /* Neutral Colors */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Typography */
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--gray-800);
+    background-color: var(--gray-50);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--gray-900);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+    color: var(--gray-600);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: var(--spacing-xl) 0;
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.header-content {
+    text-align: center;
+}
+
+.logo {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.logo i {
+    font-size: 2.25rem;
+}
+
+.tagline {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Main Layout */
+.main-container {
+    flex: 1;
+    padding-bottom: var(--spacing-xl);
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+}
+
+@media (min-width: 992px) {
+    .app-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Form Styles */
+.form-section, .preview-section {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.form-header, .preview-header {
+    border-bottom: 2px solid var(--gray-100);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-header h2, .preview-header h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.form-fieldset {
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    background: var(--gray-50);
+}
+
+.form-fieldset legend {
+    font-weight: 600;
+    padding: 0 var(--spacing-sm);
+    color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+    color: var(--gray-700);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Dynamic Sections */
+.dynamic-section {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-entry {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.btn-remove {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    background: var(--danger);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-remove:hover {
+    background: #dc2626;
+}
+
+/* Template Selection */
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.template-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.template-option:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.template-option.active {
+    border-color: var(--primary);
+    background-color: rgba(37, 99, 235, 0.05);
+    box-shadow: var(--shadow-md);
+}
+
+.template-preview {
+    width: 100%;
+    height: 80px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.modern-preview {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
+
+.classic-preview {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+}
+
+.minimal-preview {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border: 2px dashed var(--gray-400);
+}
+
+.executive-preview {
+    background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
+}
+
+.template-name {
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: var(--gray-200);
+    color: var(--gray-700);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray-300);
+    transform: translateY(-1px);
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+/* Preview Section */
+.preview-container {
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.preview-paper {
+    background: white;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    min-height: 400px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    overflow: auto;
+    position: relative;
+}
+
+.preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: var(--gray-400);
+    text-align: center;
+}
+
+.preview-placeholder i {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.preview-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.preview-scale {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.preview-scale select {
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--gray-300);
+    background: white;
+}
+
+/* Tips Box */
+.tips-box {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.tips-box h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--primary-dark);
+}
+
+.tips-box ul {
+    padding-left: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.tips-box li {
+    margin-bottom: var(--spacing-xs);
+    color: var(--gray-700);
+}
+
+/* Footer */
+.footer {
+    background: var(--gray-900);
+    color: var(--gray-400);
+    padding: var(--spacing-xl) 0;
+    margin-top: auto;
+    text-align: center;
+}
+
+.footer p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.footer-links a {
+    color: var(--gray-400);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.copyright {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+}
+
+/* CV Preview Styles (for generated content) */
+.cv-preview {
+    font-family: var(--font-body);
+    color: var(--gray-800);
+    line-height: 1.5;
+}
+
+.cv-header {
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.cv-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-xs);
+}
+
+.cv-profession {
+    font-size: 1.25rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.cv-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+.cv-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cv-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.cv-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    border-bottom: 2px solid var(--gray-300);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.cv-experience-item, .cv-education-item {
+    margin-bottom: var(--spacing-md);
+}
+
+.cv-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xs);
+}
+
+.cv-item-title {
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.cv-item-subtitle {
+    color: var(--gray-600);
+}
+
+.cv-item-period {
+    color: var(--gray-500);
+    font-size: 0.9rem;
+}
+
+.cv-item-description {
+    color: var(--gray-700);
+}
+
+.cv-skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.cv-skill-tag {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .header {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .form-section, .preview-section {
+        padding: var(--spacing-md);
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+    
+    .preview-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+</style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -250,7 +887,927 @@
     <!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="templates.js"></script>
-    <script src="app.js"></script>
+    <script>
+// CV Template Renderer for Bikin CV Gratis
+
+const CVTemplates = {
+    // Modern Template (default)
+    modern: function(data) {
+        const { personal, experiences, education, skills, languages } = data;
+        
+        return `
+            <div class="cv-preview cv-modern">
+                <!-- Header -->
+                <div class="cv-header">
+                    <h1 class="cv-name">${personal.fullName || 'Nama Lengkap'}</h1>
+                    <h2 class="cv-profession">${personal.profession || 'Profesi'}</h2>
+                    
+                    <div class="cv-contact">
+                        ${personal.email ? `<div class="cv-contact-item"><i class="fas fa-envelope"></i> ${personal.email}</div>` : ''}
+                        ${personal.phone ? `<div class="cv-contact-item"><i class="fas fa-phone"></i> ${personal.phone}</div>` : ''}
+                        ${personal.location ? `<div class="cv-contact-item"><i class="fas fa-map-marker-alt"></i> ${personal.location}</div>` : ''}
+                        ${personal.linkedin ? `<div class="cv-contact-item"><i class="fab fa-linkedin"></i> ${personal.linkedin}</div>` : ''}
+                    </div>
+                </div>
+                
+                <!-- Summary -->
+                ${personal.summary ? `
+                <div class="cv-section">
+                    <h3 class="cv-section-title">Profil Singkat</h3>
+                    <p>${personal.summary}</p>
+                </div>
+                ` : ''}
+                
+                <!-- Work Experience -->
+                ${experiences.length > 0 ? `
+                <div class="cv-section">
+                    <h3 class="cv-section-title">Pengalaman Kerja</h3>
+                    ${experiences.map(exp => `
+                    <div class="cv-experience-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <h4 class="cv-item-title">${exp.position || 'Posisi'}</h4>
+                                <div class="cv-item-subtitle">${exp.company || 'Perusahaan'}</div>
+                            </div>
+                            <div class="cv-item-period">
+                                ${exp.start || ''} ${exp.end ? ` - ${exp.end}` : ' - Sekarang'}
+                            </div>
+                        </div>
+                        ${exp.description ? `<p class="cv-item-description">${exp.description}</p>` : ''}
+                    </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                
+                <!-- Education -->
+                ${education.length > 0 ? `
+                <div class="cv-section">
+                    <h3 class="cv-section-title">Pendidikan</h3>
+                    ${education.map(edu => `
+                    <div class="cv-education-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <h4 class="cv-item-title">${edu.degree || 'Jurusan'}</h4>
+                                <div class="cv-item-subtitle">${edu.institution || 'Institusi'}</div>
+                            </div>
+                            <div class="cv-item-period">
+                                ${edu.year ? `Lulus: ${edu.year}` : ''}
+                                ${edu.gpa ? ` | IPK: ${edu.gpa}` : ''}
+                            </div>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                
+                <!-- Skills -->
+                ${skills.length > 0 ? `
+                <div class="cv-section">
+                    <h3 class="cv-section-title">Keahlian Teknis</h3>
+                    <div class="cv-skills-list">
+                        ${skills.map(skill => `<span class="cv-skill-tag">${skill}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+                
+                <!-- Languages -->
+                ${languages.length > 0 ? `
+                <div class="cv-section">
+                    <h3 class="cv-section-title">Bahasa</h3>
+                    <div class="cv-skills-list">
+                        ${languages.map(lang => `<span class="cv-skill-tag">${lang}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    },
+    
+    // Classic Template (more traditional layout)
+    classic: function(data) {
+        const { personal, experiences, education, skills, languages } = data;
+        
+        return `
+            <div class="cv-preview cv-classic" style="font-family: 'Times New Roman', serif;">
+                <!-- Header -->
+                <div class="cv-header" style="text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px;">
+                    <h1 class="cv-name" style="font-size: 28px; margin-bottom: 5px;">${personal.fullName || 'Nama Lengkap'}</h1>
+                    <h2 class="cv-profession" style="font-size: 18px; color: #555; margin-bottom: 15px;">${personal.profession || 'Profesi'}</h2>
+                    
+                    <div class="cv-contact" style="font-size: 14px; color: #666;">
+                        ${personal.email ? `<span style="margin: 0 10px;"><i class="fas fa-envelope"></i> ${personal.email}</span>` : ''}
+                        ${personal.phone ? `<span style="margin: 0 10px;"><i class="fas fa-phone"></i> ${personal.phone}</span>` : ''}
+                        ${personal.location ? `<span style="margin: 0 10px;"><i class="fas fa-map-marker-alt"></i> ${personal.location}</span>` : ''}
+                    </div>
+                </div>
+                
+                <!-- Summary -->
+                ${personal.summary ? `
+                <div class="cv-section" style="margin: 20px 0;">
+                    <h3 class="cv-section-title" style="font-size: 16px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">PROFIL</h3>
+                    <p style="font-size: 14px; text-align: justify;">${personal.summary}</p>
+                </div>
+                ` : ''}
+                
+                <!-- Work Experience -->
+                ${experiences.length > 0 ? `
+                <div class="cv-section" style="margin: 20px 0;">
+                    <h3 class="cv-section-title" style="font-size: 16px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">PENGALAMAN KERJA</h3>
+                    ${experiences.map(exp => `
+                    <div class="cv-experience-item" style="margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: bold; margin: 0;">${exp.position || 'Posisi'}</h4>
+                                <div style="font-size: 14px; color: #555;">${exp.company || 'Perusahaan'}</div>
+                            </div>
+                            <div style="font-size: 13px; color: #777;">
+                                ${exp.start || ''} ${exp.end ? ` - ${exp.end}` : ' - Sekarang'}
+                            </div>
+                        </div>
+                        ${exp.description ? `<p style="font-size: 14px; margin: 5px 0 0 0;">${exp.description}</p>` : ''}
+                    </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                
+                <!-- Education -->
+                ${education.length > 0 ? `
+                <div class="cv-section" style="margin: 20px 0;">
+                    <h3 class="cv-section-title" style="font-size: 16px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">PENDIDIKAN</h3>
+                    ${education.map(edu => `
+                    <div class="cv-education-item" style="margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: bold; margin: 0;">${edu.degree || 'Jurusan'}</h4>
+                                <div style="font-size: 14px; color: #555;">${edu.institution || 'Institusi'}</div>
+                            </div>
+                            <div style="font-size: 13px; color: #777;">
+                                ${edu.year || ''} ${edu.gpa ? ` | IPK: ${edu.gpa}` : ''}
+                            </div>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                
+                <!-- Skills & Languages -->
+                <div style="display: flex; margin: 20px 0; gap: 30px;">
+                    ${skills.length > 0 ? `
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 16px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">KEAHLIAN</h3>
+                        <p style="font-size: 14px;">${skills.join(', ')}</p>
+                    </div>
+                    ` : ''}
+                    
+                    ${languages.length > 0 ? `
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 16px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">BAHASA</h3>
+                        <p style="font-size: 14px;">${languages.join(', ')}</p>
+                    </div>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+    },
+    
+    // Minimal Template (clean, spaced out)
+    minimal: function(data) {
+        const { personal, experiences, education, skills, languages } = data;
+        
+        return `
+            <div class="cv-preview cv-minimal" style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333;">
+                <!-- Header -->
+                <div class="cv-header" style="border-bottom: 1px solid #eee; padding-bottom: 30px; margin-bottom: 30px;">
+                    <h1 class="cv-name" style="font-size: 32px; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 5px;">${personal.fullName || 'Nama Lengkap'}</h1>
+                    <h2 class="cv-profession" style="font-size: 18px; font-weight: 400; color: #666; margin-bottom: 20px;">${personal.profession || 'Profesi'}</h2>
+                    
+                    <div class="cv-contact" style="font-size: 14px; color: #888;">
+                        ${personal.email ? `<span style="margin-right: 20px;">${personal.email}</span>` : ''}
+                        ${personal.phone ? `<span style="margin-right: 20px;">${personal.phone}</span>` : ''}
+                        ${personal.location ? `<span style="margin-right: 20px;">${personal.location}</span>` : ''}
+                    </div>
+                </div>
+                
+                <!-- Summary -->
+                ${personal.summary ? `
+                <div class="cv-section" style="margin-bottom: 30px;">
+                    <p style="font-size: 15px; line-height: 1.7; color: #444;">${personal.summary}</p>
+                </div>
+                ` : ''}
+                
+                <!-- Work Experience -->
+                ${experiences.length > 0 ? `
+                <div class="cv-section" style="margin-bottom: 30px;">
+                    ${experiences.map(exp => `
+                    <div class="cv-experience-item" style="margin-bottom: 25px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <h3 style="font-size: 16px; font-weight: 500; margin: 0;">${exp.position || 'Posisi'}</h3>
+                            <div style="font-size: 14px; color: #999;">
+                                ${exp.start || ''} ${exp.end ? ` - ${exp.end}` : ' - Sekarang'}
+                            </div>
+                        </div>
+                        <div style="font-size: 15px; color: #777; margin-bottom: 8px;">${exp.company || 'Perusahaan'}</div>
+                        ${exp.description ? `<p style="font-size: 14px; color: #555; line-height: 1.6;">${exp.description}</p>` : ''}
+                    </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                
+                <!-- Education -->
+                ${education.length > 0 ? `
+                <div class="cv-section" style="margin-bottom: 30px;">
+                    ${education.map(edu => `
+                    <div class="cv-education-item" style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <h3 style="font-size: 16px; font-weight: 500; margin: 0;">${edu.degree || 'Jurusan'}</h3>
+                            <div style="font-size: 14px; color: #999;">${edu.year || ''}</div>
+                        </div>
+                        <div style="font-size: 15px; color: #777;">${edu.institution || 'Institusi'} ${edu.gpa ? ` • IPK: ${edu.gpa}` : ''}</div>
+                    </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                
+                <!-- Skills & Languages -->
+                <div style="display: flex; margin-top: 40px; gap: 40px;">
+                    ${skills.length > 0 ? `
+                    <div style="flex: 1;">
+                        <h4 style="font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 15px;">Keahlian</h4>
+                        <p style="font-size: 14px; color: #444;">${skills.join(' • ')}</p>
+                    </div>
+                    ` : ''}
+                    
+                    ${languages.length > 0 ? `
+                    <div style="flex: 1;">
+                        <h4 style="font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 15px;">Bahasa</h4>
+                        <p style="font-size: 14px; color: #444;">${languages.join(' • ')}</p>
+                    </div>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+    },
+    
+    // Executive Template (professional, compact)
+    executive: function(data) {
+        const { personal, experiences, education, skills, languages } = data;
+        
+        return `
+            <div class="cv-preview cv-executive" style="font-family: 'Georgia', serif; color: #222;">
+                <!-- Header -->
+                <div class="cv-header" style="background: #1a1a1a; color: white; padding: 25px; margin: -20px -20px 20px -20px;">
+                    <h1 class="cv-name" style="font-size: 28px; font-weight: normal; margin-bottom: 5px;">${personal.fullName || 'Nama Lengkap'}</h1>
+                    <h2 class="cv-profession" style="font-size: 16px; font-weight: 300; color: #ccc; margin-bottom: 15px;">${personal.profession || 'Profesi'}</h2>
+                    
+                    <div class="cv-contact" style="font-size: 13px; color: #aaa;">
+                        ${personal.email ? `<span style="margin-right: 25px;"><i class="fas fa-envelope"></i> ${personal.email}</span>` : ''}
+                        ${personal.phone ? `<span style="margin-right: 25px;"><i class="fas fa-phone"></i> ${personal.phone}</span>` : ''}
+                        ${personal.location ? `<span style="margin-right: 25px;"><i class="fas fa-map-marker-alt"></i> ${personal.location}</span>` : ''}
+                    </div>
+                </div>
+                
+                <!-- Two-column layout -->
+                <div style="display: flex; gap: 40px;">
+                    <!-- Left Column: Summary & Skills -->
+                    <div style="flex: 1;">
+                        <!-- Summary -->
+                        ${personal.summary ? `
+                        <div class="cv-section" style="margin-bottom: 25px;">
+                            <h3 style="font-size: 16px; font-weight: 600; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px;">PROFIL</h3>
+                            <p style="font-size: 13px; line-height: 1.6; color: #444;">${personal.summary}</p>
+                        </div>
+                        ` : ''}
+                        
+                        <!-- Skills -->
+                        ${skills.length > 0 ? `
+                        <div class="cv-section" style="margin-bottom: 25px;">
+                            <h3 style="font-size: 16px; font-weight: 600; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px;">KEAHLIAN</h3>
+                            <div style="font-size: 13px; color: #444;">
+                                ${skills.map(skill => `<div style="margin-bottom: 5px;">• ${skill}</div>`).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
+                        
+                        <!-- Languages -->
+                        ${languages.length > 0 ? `
+                        <div class="cv-section" style="margin-bottom: 25px;">
+                            <h3 style="font-size: 16px; font-weight: 600; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px;">BAHASA</h3>
+                            <div style="font-size: 13px; color: #444;">
+                                ${languages.map(lang => `<div style="margin-bottom: 5px;">• ${lang}</div>`).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                    
+                    <!-- Right Column: Experience & Education -->
+                    <div style="flex: 2;">
+                        <!-- Work Experience -->
+                        ${experiences.length > 0 ? `
+                        <div class="cv-section" style="margin-bottom: 25px;">
+                            <h3 style="font-size: 16px; font-weight: 600; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px;">PENGALAMAN KERJA</h3>
+                            ${experiences.map(exp => `
+                            <div class="cv-experience-item" style="margin-bottom: 20px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                    <h4 style="font-size: 14px; font-weight: 600; margin: 0;">${exp.position || 'Posisi'}</h4>
+                                    <div style="font-size: 12px; color: #777;">${exp.start || ''} ${exp.end ? ` - ${exp.end}` : ' - Sekarang'}</div>
+                                </div>
+                                <div style="font-size: 13px; font-weight: 500; color: #555; margin-bottom: 8px;">${exp.company || 'Perusahaan'}</div>
+                                ${exp.description ? `<p style="font-size: 13px; color: #444; line-height: 1.5;">${exp.description}</p>` : ''}
+                            </div>
+                            `).join('')}
+                        </div>
+                        ` : ''}
+                        
+                        <!-- Education -->
+                        ${education.length > 0 ? `
+                        <div class="cv-section">
+                            <h3 style="font-size: 16px; font-weight: 600; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px;">PENDIDIKAN</h3>
+                            ${education.map(edu => `
+                            <div class="cv-education-item" style="margin-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                    <h4 style="font-size: 14px; font-weight: 600; margin: 0;">${edu.degree || 'Jurusan'}</h4>
+                                    <div style="font-size: 12px; color: #777;">${edu.year || ''}</div>
+                                </div>
+                                <div style="font-size: 13px; color: #555;">${edu.institution || 'Institusi'} ${edu.gpa ? ` | IPK: ${edu.gpa}` : ''}</div>
+                            </div>
+                            `).join('')}
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+};
+
+// Export for use in app.js
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = CVTemplates;
+}
+</script>
+<script>
+// Bikin CV Gratis - Main Application Script
+
+// Global variables
+let currentTemplate = 'modern';
+let formData = {
+    personal: {},
+    experiences: [],
+    education: [],
+    skills: [],
+    languages: []
+};
+
+// DOM Elements
+const cvForm = document.getElementById('cvForm');
+const cvPreview = document.getElementById('cvPreview');
+const templateOptions = document.querySelectorAll('.template-option');
+const zoomLevel = document.getElementById('zoomLevel');
+const resetBtn = document.getElementById('resetBtn');
+const generateBtn = document.getElementById('generateBtn');
+const printBtn = document.getElementById('printBtn');
+const saveDraftBtn = document.getElementById('saveDraftBtn');
+
+// Initialize the application
+function init() {
+    // Set up template selection
+    templateOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            templateOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            currentTemplate = option.dataset.template;
+            updatePreview();
+        });
+    });
+    
+    // Set up form event listeners
+    cvForm.addEventListener('input', debounce(updateFormData, 300));
+    cvForm.addEventListener('submit', handleFormSubmit);
+    
+    // Set up button listeners
+    resetBtn.addEventListener('click', resetForm);
+    generateBtn.addEventListener('click', generatePDF);
+    printBtn.addEventListener('click', printPreview);
+    saveDraftBtn.addEventListener('click', saveDraft);
+    
+    // Set up zoom level
+    zoomLevel.addEventListener('change', () => {
+        const scale = parseFloat(zoomLevel.value);
+        cvPreview.style.transform = `scale(${scale})`;
+        cvPreview.style.transformOrigin = 'top left';
+    });
+    
+    // Load saved draft if exists
+    loadDraft();
+    
+    // Initial preview update
+    updateFormData();
+}
+
+// Update form data from inputs
+function updateFormData() {
+    // Personal Information
+    formData.personal = {
+        fullName: getValue('fullName'),
+        profession: getValue('profession'),
+        email: getValue('email'),
+        phone: getValue('phone'),
+        location: getValue('location'),
+        linkedin: getValue('linkedin'),
+        summary: getValue('summary')
+    };
+    
+    // Work Experiences
+    formData.experiences = [];
+    const expPositions = document.getElementsByName('expPosition[]');
+    const expCompanies = document.getElementsByName('expCompany[]');
+    const expStarts = document.getElementsByName('expStart[]');
+    const expEnds = document.getElementsByName('expEnd[]');
+    const expDescriptions = document.getElementsByName('expDescription[]');
+    
+    for (let i = 0; i < expPositions.length; i++) {
+        formData.experiences.push({
+            position: expPositions[i].value,
+            company: expCompanies[i].value,
+            start: expStarts[i].value ? formatDate(expStarts[i].value) : '',
+            end: expEnds[i].value ? formatDate(expEnds[i].value) : '',
+            description: expDescriptions[i].value
+        });
+    }
+    
+    // Education
+    formData.education = [];
+    const eduDegrees = document.getElementsByName('eduDegree[]');
+    const eduInstitutions = document.getElementsByName('eduInstitution[]');
+    const eduYears = document.getElementsByName('eduYear[]');
+    const eduGpas = document.getElementsByName('eduGpa[]');
+    
+    for (let i = 0; i < eduDegrees.length; i++) {
+        formData.education.push({
+            degree: eduDegrees[i].value,
+            institution: eduInstitutions[i].value,
+            year: eduYears[i].value,
+            gpa: eduGpas[i].value
+        });
+    }
+    
+    // Skills
+    const skillsInput = getValue('skills');
+    formData.skills = skillsInput ? skillsInput.split(',').map(s => s.trim()).filter(s => s) : [];
+    
+    // Languages
+    const languagesInput = getValue('languages');
+    formData.languages = languagesInput ? languagesInput.split(',').map(l => l.trim()).filter(l => l) : [];
+    
+    // Update preview
+    updatePreview();
+}
+
+// Update CV preview
+function updatePreview() {
+    if (!formData.personal.fullName && !formData.personal.profession) {
+        return; // Keep placeholder if no data
+    }
+    
+    // Get template renderer
+    const renderer = CVTemplates[currentTemplate];
+    if (!renderer) {
+        console.error('Template renderer not found:', currentTemplate);
+        return;
+    }
+    
+    // Render the CV preview
+    cvPreview.innerHTML = renderer(formData);
+    
+    // Enable print button
+    printBtn.disabled = false;
+}
+
+// Format date from YYYY-MM to Month YYYY
+function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const date = new Date(dateStr + '-01');
+    const months = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+// Get form field value
+function getValue(id) {
+    const element = document.getElementById(id);
+    return element ? element.value.trim() : '';
+}
+
+// Handle form submission
+function handleFormSubmit(event) {
+    event.preventDefault();
+    generatePDF();
+}
+
+// Generate PDF
+function generatePDF() {
+    if (!formData.personal.fullName) {
+        alert('Silakan isi nama lengkap terlebih dahulu.');
+        document.getElementById('fullName').focus();
+        return;
+    }
+    
+    // Show loading state
+    const originalText = generateBtn.innerHTML;
+    generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membuat PDF...';
+    generateBtn.disabled = true;
+    
+    // Use html2canvas to capture the preview
+    html2canvas(cvPreview, {
+        scale: 2, // Higher quality
+        useCORS: true,
+        backgroundColor: '#ffffff'
+    }).then(canvas => {
+        // Create PDF
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+        });
+        
+        // Add image to PDF
+        const imgData = canvas.toDataURL('image/png');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        const imgX = (pdfWidth - imgWidth * ratio) / 2;
+        const imgY = 10; // Margin top
+        
+        pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+        
+        // Save the PDF
+        const fileName = `CV_${formData.personal.fullName.replace(/\s+/g, '_')}.pdf`;
+        pdf.save(fileName);
+        
+        // Reset button state
+        generateBtn.innerHTML = originalText;
+        generateBtn.disabled = false;
+        
+        // Show success message
+        showNotification('PDF berhasil diunduh!', 'success');
+    }).catch(error => {
+        console.error('PDF generation error:', error);
+        
+        // Reset button state
+        generateBtn.innerHTML = originalText;
+        generateBtn.disabled = false;
+        
+        // Show error message
+        showNotification('Gagal membuat PDF. Silakan coba lagi.', 'error');
+    });
+}
+
+// Print preview
+function printPreview() {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>CV ${formData.personal.fullName || ''}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 20px; }
+                    @media print {
+                        body { margin: 0; }
+                    }
+                </style>
+            </head>
+            <body>
+                ${cvPreview.innerHTML}
+                <script>
+                    window.onload = function() {
+                        window.print();
+                        setTimeout(function() {
+                            window.close();
+                        }, 100);
+                    };
+                </script>
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+}
+
+// Save draft to localStorage
+function saveDraft() {
+    try {
+        localStorage.setItem('cvDraft', JSON.stringify(formData));
+        localStorage.setItem('cvTemplate', currentTemplate);
+        showNotification('Draft berhasil disimpan!', 'success');
+    } catch (error) {
+        console.error('Error saving draft:', error);
+        showNotification('Gagal menyimpan draft. Storage mungkin penuh.', 'error');
+    }
+}
+
+// Load draft from localStorage
+function loadDraft() {
+    try {
+        const savedDraft = localStorage.getItem('cvDraft');
+        const savedTemplate = localStorage.getItem('cvTemplate');
+        
+        if (savedDraft) {
+            formData = JSON.parse(savedDraft);
+            
+            // Restore personal information
+            setValue('fullName', formData.personal.fullName || '');
+            setValue('profession', formData.personal.profession || '');
+            setValue('email', formData.personal.email || '');
+            setValue('phone', formData.personal.phone || '');
+            setValue('location', formData.personal.location || '');
+            setValue('linkedin', formData.personal.linkedin || '');
+            setValue('summary', formData.personal.summary || '');
+            
+            // Restore skills and languages
+            setValue('skills', formData.skills.join(', ') || '');
+            setValue('languages', formData.languages.join(', ') || '');
+            
+            // Restore template
+            if (savedTemplate) {
+                currentTemplate = savedTemplate;
+                templateOptions.forEach(opt => {
+                    opt.classList.toggle('active', opt.dataset.template === currentTemplate);
+                });
+            }
+            
+            // Note: Dynamic sections (experiences, education) would need more complex restoration
+            // For MVP, we'll just update preview with loaded data
+            updatePreview();
+            
+            showNotification('Draft berhasil dimuat!', 'success');
+        }
+    } catch (error) {
+        console.error('Error loading draft:', error);
+    }
+}
+
+// Set form field value
+function setValue(id, value) {
+    const element = document.getElementById(id);
+    if (element) element.value = value;
+}
+
+// Reset form
+function resetForm() {
+    if (confirm('Apakah Anda yakin ingin mereset form? Semua data akan hilang.')) {
+        cvForm.reset();
+        
+        // Clear dynamic sections (keep first entry)
+        const experienceSection = document.getElementById('experienceSection');
+        const educationSection = document.getElementById('educationSection');
+        
+        while (experienceSection.children.length > 1) {
+            experienceSection.removeChild(experienceSection.lastChild);
+        }
+        
+        while (educationSection.children.length > 1) {
+            educationSection.removeChild(educationSection.lastChild);
+        }
+        
+        // Reset form data
+        formData = {
+            personal: {},
+            experiences: [],
+            education: [],
+            skills: [],
+            languages: []
+        };
+        
+        // Reset template to default
+        currentTemplate = 'modern';
+        templateOptions.forEach(opt => {
+            opt.classList.toggle('active', opt.dataset.template === 'modern');
+        });
+        
+        // Reset zoom
+        zoomLevel.value = '1';
+        cvPreview.style.transform = 'scale(1)';
+        
+        // Show placeholder
+        cvPreview.innerHTML = `
+            <div class="preview-placeholder">
+                <i class="fas fa-file-alt"></i>
+                <p>Isi formulir di sebelah kiri untuk melihat preview CV Anda.</p>
+            </div>
+        `;
+        
+        // Disable print button
+        printBtn.disabled = true;
+        
+        // Clear localStorage
+        localStorage.removeItem('cvDraft');
+        localStorage.removeItem('cvTemplate');
+        
+        showNotification('Form berhasil direset!', 'success');
+    }
+}
+
+// Add experience entry
+function addExperience() {
+    const experienceSection = document.getElementById('experienceSection');
+    const newEntry = document.createElement('div');
+    newEntry.className = 'experience-entry form-entry';
+    newEntry.innerHTML = `
+        <div class="form-row">
+            <div class="form-group">
+                <label>Posisi</label>
+                <input type="text" name="expPosition[]" placeholder="Contoh: Frontend Developer">
+            </div>
+            <div class="form-group">
+                <label>Perusahaan</label>
+                <input type="text" name="expCompany[]" placeholder="Nama perusahaan">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Periode (Mulai)</label>
+                <input type="month" name="expStart[]">
+            </div>
+            <div class="form-group">
+                <label>Periode (Selesai)</label>
+                <input type="month" name="expEnd[]" placeholder="Sekarang">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Deskripsi Pekerjaan</label>
+            <textarea name="expDescription[]" rows="2" placeholder="Jelaskan tanggung jawab dan pencapaian utama."></textarea>
+        </div>
+        <button type="button" class="btn-remove" onclick="removeExperience(this)"><i class="fas fa-times"></i> Hapus</button>
+    `;
+    
+    // Add input listener to the new entry
+    const inputs = newEntry.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('input', debounce(updateFormData, 300));
+    });
+    
+    experienceSection.appendChild(newEntry);
+}
+
+// Remove experience entry
+function removeExperience(button) {
+    const entry = button.closest('.form-entry');
+    if (entry && entry.parentNode.children.length > 1) {
+        entry.parentNode.removeChild(entry);
+        updateFormData();
+    }
+}
+
+// Add education entry
+function addEducation() {
+    const educationSection = document.getElementById('educationSection');
+    const newEntry = document.createElement('div');
+    newEntry.className = 'education-entry form-entry';
+    newEntry.innerHTML = `
+        <div class="form-row">
+            <div class="form-group">
+                <label>Jurusan / Gelar</label>
+                <input type="text" name="eduDegree[]" placeholder="Contoh: S1 Teknik Informatika">
+            </div>
+            <div class="form-group">
+                <label>Institusi</label>
+                <input type="text" name="eduInstitution[]" placeholder="Nama universitas/sekolah">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Tahun Lulus</label>
+                <input type="number" name="eduYear[]" min="1970" max="2030" placeholder="2020">
+            </div>
+            <div class="form-group">
+                <label>IPK/Nilai (opsional)</label>
+                <input type="text" name="eduGpa[]" placeholder="Contoh: 3.75">
+            </div>
+        </div>
+        <button type="button" class="btn-remove" onclick="removeEducation(this)"><i class="fas fa-times"></i> Hapus</button>
+    `;
+    
+    // Add input listener to the new entry
+    const inputs = newEntry.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('input', debounce(updateFormData, 300));
+    });
+    
+    educationSection.appendChild(newEntry);
+}
+
+// Remove education entry
+function removeEducation(button) {
+    const entry = button.closest('.form-entry');
+    if (entry && entry.parentNode.children.length > 1) {
+        entry.parentNode.removeChild(entry);
+        updateFormData();
+    }
+}
+
+// Show notification
+function showNotification(message, type = 'info') {
+    // Remove existing notification
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <span>${message}</span>
+        <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        animation: slideIn 0.3s ease-out;
+        max-width: 400px;
+    `;
+    
+    // Set color based on type
+    if (type === 'success') {
+        notification.style.backgroundColor = '#10b981';
+    } else if (type === 'error') {
+        notification.style.backgroundColor = '#ef4444';
+    } else {
+        notification.style.backgroundColor = '#3b82f6';
+    }
+    
+    // Add close button styles
+    notification.querySelector('button').style.cssText = `
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0;
+        font-size: 14px;
+    `;
+    
+    // Add animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Debounce function for performance
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Make functions available globally for inline onclick handlers
+window.addExperience = addExperience;
+window.removeExperience = removeExperience;
+window.addEducation = addEducation;
+window.removeEducation = removeEducation;
+
+// Initialize when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+</script>
 </body>
 </html>
