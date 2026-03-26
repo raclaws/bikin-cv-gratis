@@ -1,0 +1,23 @@
+{
+  "name": "bikin-cv-gratis",
+  "version": "1.0.0",
+  "description": "Free online CV builder for Indonesian job seekers",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "cv",
+    "resume",
+    "builder",
+    "indonesia",
+    "pdf",
+    "free"
+  ],
+  "author": "Raka Feisal <raka.feisal@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}
